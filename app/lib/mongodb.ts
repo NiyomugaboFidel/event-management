@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import seedAdminUser from './seedAdmin';
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
@@ -6,6 +7,7 @@ const connectDB = async () => {
   try {
     if (mongoose.connection.readyState === 1) {
       // Already connected
+
       return mongoose.connection;
     }
 
@@ -15,6 +17,7 @@ const connectDB = async () => {
     }
 
     console.log("MongoDB connected successfully");
+    await seedAdminUser();
     return mongoose.connection;
   } catch (error) {
     console.error("MongoDB connection error:", error);
@@ -23,14 +26,3 @@ const connectDB = async () => {
 };
 
 export default connectDB;
-
-const startServer = async () => {
-  try {
-    await connectDB(); // Connect to the database
-    // Start your server or other logic here
-  } catch (error) {
-    console.error("Server start error:", error);
-  }
-};
-
-startServer();

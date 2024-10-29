@@ -1,20 +1,13 @@
-import { useState } from 'react';
-
-interface BookingData {
-  attendeeName: string;
-  attendeeEmail: string;
-  numberOfSeats: number;
-}
-
+'use client'
+import { useState } from "react";
 export function useBookEvent() {
+  const [booking, setBooking] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const bookEvent = async (eventId: string, bookingData: BookingData) => {
+  const bookEvent = async (eventId: string, bookingData: any) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      setError(null);
-      
       const response = await fetch(`/api/events/${eventId}/book`, {
         method: 'POST',
         headers: {
@@ -22,20 +15,21 @@ export function useBookEvent() {
         },
         body: JSON.stringify(bookingData),
       });
-      
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to book event');
+        throw new Error('Failed to book event');
       }
-      
-      return await response.json();
+
+      const data = await response.json();
+      setBooking(data);
+      return data;
     } catch (err) {
-      setError(err instanceof Error ? err : new Error('Failed to book event'));
+      setError(err instanceof Error ? err.message : 'An error occurred');
       throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  return { bookEvent, loading, error };
+  return { bookEvent, booking, loading, error };
 }

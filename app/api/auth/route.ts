@@ -4,7 +4,7 @@ import connectDB from '@/app/lib/mongodb';
 import Admin from '@/app/models/Admin';
 
 
-const JWT_SECRET = process.env.JWT_SECRET!;
+const JWT_SECRET = process.env.JWT_SECRET! || 'fidele';
 
 export async function POST(request: Request) {
   try {

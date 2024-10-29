@@ -1,3 +1,4 @@
+'use client'
 
 import { useFetchEvents } from '../hooks/useFetchEvents';
 import EventCard from './EventCard';

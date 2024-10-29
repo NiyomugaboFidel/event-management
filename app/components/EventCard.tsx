@@ -1,4 +1,4 @@
-// components/EventCard.tsx
+'use client'
 import { useState } from 'react';
 import { useBookEvent } from '../hooks/useBookEvent';
 
@@ -21,7 +21,7 @@ export default function EventCard({ event }: EventCardProps) {
     numberOfSeats: 1,
   });
   const { bookEvent, loading, error } = useBookEvent();
-  const errorMessage:Error | null = error
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -107,7 +107,7 @@ export default function EventCard({ event }: EventCardProps) {
             </div>
 
             {error && (
-              <div className="text-red-500 text-sm">{errorMessage?.message}</div>
+              <div className="text-red-500 text-sm">{error}</div>
             )}
 
             <div className="flex space-x-3">
