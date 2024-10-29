@@ -1,15 +1,36 @@
 import mongoose from 'mongoose';
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your MongoDB URI to .env.local');
-}
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const connectDB = async () => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      // Already connected
+      return mongoose.connection;
+    }
 
-export async function connectToDatabase() {
-  if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-}
+    if (mongoose.connection.readyState === 0) {
+      // Not connected, establish connection
+      await mongoose.connect(MONGODB_URI);
+    }
+
+    console.log("MongoDB connected successfully");
+    return mongoose.connection;
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw new Error('Failed to connect to MongoDB');
+  }
+};
+
+export default connectDB;
+
+const startServer = async () => {
+  try {
+    await connectDB(); // Connect to the database
+    // Start your server or other logic here
+  } catch (error) {
+    console.error("Server start error:", error);
+  }
+};
+
+startServer();
