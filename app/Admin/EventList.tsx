@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
-import EditEventForm from './EditEventForm';
+
 import { useFetchEvents } from '../hooks/useFetchEvents';
+import EditEventForm from './EditEventForm';
 
 export default function AdminEventList() {
   const { events, loading, error } = useFetchEvents();
