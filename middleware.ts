@@ -1,25 +1,30 @@
 import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
-import { verify } from 'jsonwebtoken';
+import type { NextRequest } from 'next/server';
+import { jwtVerify } from 'jose';
 
-const JWT_SECRET = process.env.JWT_SECRET || "fidele";
 
 export async function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    const token = request.cookies.get('auth_token')?.value;
-    console.log(token);
 
-    // if (!token) {
-    //   return NextResponse.redirect(new URL('/login', request.url));
-    // }
-  return NextResponse.next();
-    // try {
-    //   verify(token, JWT_SECRET);
-    //   return NextResponse.next();
-    // } catch (error) {
-    //   return NextResponse.redirect(new URL('/login', request.url));
-    // }
+  const token = request.cookies.get('auth_token')?.value;
+
+  if (!token) {
+    // Redirect if token is missing
+    console.log("No token found, redirecting to login.");
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  return NextResponse.next();
+  try {
+    const secret = new TextEncoder().encode('fidele');
+    await jwtVerify(token, secret);
+    // Token is valid, proceed to the route
+    return NextResponse.next();
+  } catch (error) {
+    console.error("Token verification failed:", error);
+    // Redirect if token verification fails
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
 }
+
+export const config = {
+  matcher: ['/admin/:path*'], 
+};
