@@ -1,4 +1,3 @@
-'use client';
 import { useState } from "react";
 import { useBookEvent } from "../hooks/useBookEvent";
 
@@ -29,7 +28,7 @@ export default function EventCard({ event }: EventCardProps) {
       setShowBooking(false);
       setBookingData({ attendeeName: "", attendeeEmail: "", numberOfSeats: 1 });
       window.location.reload(); // Refresh to update seats
-    } catch (err) {
+    } catch {
       // Error handling is managed by the hook
     }
   };

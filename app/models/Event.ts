@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
 const eventSchema = new mongoose.Schema({
   title: {
     type: String,

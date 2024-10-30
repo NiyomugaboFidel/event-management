@@ -4,7 +4,6 @@
 import { useState } from 'react';
 import AddEventForm from './AddEventForm';
 import AdminEventList from './EventList';
-import Link from 'next/link';
 import BookingsTable from './BookingTable';
 
 export default function AdminDashboard() {

@@ -16,6 +16,10 @@ const BookingsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
+   const handlerSetItemsPerPage = ()=>{
+    setItemsPerPage(5);
+   }
+   handlerSetItemsPerPage();
   useEffect(() => {
     const fetchBookings = async () => {
       try {

@@ -2,11 +2,9 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import connectDB from '@/app/lib/mongodb';
 import Admin from '@/app/models/Admin';
-// import { JWT_SECRET } from '@/app/config/cofing';
 
+const JWT_SECRET = 'fidele_developer';
 
-
-const JWT_SECRET = 'fidele_developer'
 export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
@@ -42,12 +40,12 @@ export async function POST(request: Request) {
       sameSite: 'strict',
       maxAge: 86400, // 1 day
     });
-    
 
     return response;
   } catch (error) {
+    console.error('Authentication error:', error); // Log the error for debugging
     return NextResponse.json(
-      { error: 'Authentication failed' },
+      { error: 'Authentication failed', details: error }, // Include error details if necessary
       { status: 500 }
     );
   }

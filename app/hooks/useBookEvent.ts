@@ -1,11 +1,24 @@
 'use client'
 import { useState } from "react";
+
+interface BookingData {
+  attendeeName: string;
+  attendeeEmail: string;
+  numberOfSeats: number;
+}
+
+interface BookingResponse {
+  success: boolean;
+  message?: string;
+  bookingId?: string;
+}
+
 export function useBookEvent() {
-  const [booking, setBooking] = useState<any>(null);
+  const [booking, setBooking] = useState<BookingResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const bookEvent = async (eventId: string, bookingData: any) => {
+  const bookEvent = async (eventId: string, bookingData: BookingData) => {
     setLoading(true);
     try {
       const response = await fetch(`/api/events/${eventId}/book`, {
@@ -20,7 +33,7 @@ export function useBookEvent() {
         throw new Error('Failed to book event');
       }
 
-      const data = await response.json();
+      const data: BookingResponse = await response.json();
       setBooking(data);
       return data;
     } catch (err) {
