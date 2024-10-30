@@ -1,4 +1,4 @@
-
+'use client'
 import { useState } from 'react';
 
 import { useFetchEvents } from '../hooks/useFetchEvents';
@@ -36,16 +36,16 @@ export default function AdminEventList() {
   if (error) return <div className="text-red-500 text-center p-4">{error}</div>;
 
   return (
-    <div className="space-y-6">
+    <div className=" grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
       {events.map((event) => (
-        <div key={event._id} className="bg-white shadow rounded-lg p-6">
+        <div key={event._id} className="">
           {editingEvent === event._id ? (
             <EditEventForm
               event={event}
               onCancel={() => setEditingEvent(null)}
             />
           ) : (
-            <div>
+            <div className='bg-white shadow rounded-lg p-6'>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">{event.title}</h3>

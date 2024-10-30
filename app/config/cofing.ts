@@ -1,8 +1,8 @@
-// config/config.ts
+
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const token = {
-  jwtSecret:"fidele",
-};
+
+// export const JWT_SECRET = process.env.JWT_SECRET || 'fidele_developer'
+

@@ -1,18 +1,15 @@
-import mongoose from 'mongoose';
-import seedAdminUser from './seedAdmin';
+import mongoose from "mongoose";
+import seedAdminUser from "./seedAdmin";
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
 const connectDB = async () => {
   try {
     if (mongoose.connection.readyState === 1) {
-      // Already connected
-
       return mongoose.connection;
     }
 
     if (mongoose.connection.readyState === 0) {
-      // Not connected, establish connection
       await mongoose.connect(MONGODB_URI);
     }
 
@@ -21,7 +18,7 @@ const connectDB = async () => {
     return mongoose.connection;
   } catch (error) {
     console.error("MongoDB connection error:", error);
-    throw new Error('Failed to connect to MongoDB');
+    throw new Error("Failed to connect to MongoDB");
   }
 };
 

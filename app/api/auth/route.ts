@@ -2,10 +2,11 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import connectDB from '@/app/lib/mongodb';
 import Admin from '@/app/models/Admin';
+// import { JWT_SECRET } from '@/app/config/cofing';
 
 
-const JWT_SECRET = process.env.JWT_SECRET! || 'fidele';
 
+const JWT_SECRET = 'fidele_developer'
 export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
@@ -37,11 +38,11 @@ export async function POST(request: Request) {
     );
 
     response.cookies.set('auth_token', token, {
-      httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 86400, // 1 day
     });
+    
 
     return response;
   } catch (error) {
