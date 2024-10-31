@@ -27,13 +27,13 @@ export default function EventCard({ event }: EventCardProps) {
       await bookEvent(event._id, bookingData);
       setShowBooking(false);
       setBookingData({ attendeeName: "", attendeeEmail: "", numberOfSeats: 1 });
-      window.location.reload(); // Refresh to update seats
+      window.location.reload();
     } catch {
-      // Error handling is managed by the hook
+      
     }
   };
 
-  // Check if the event has ended
+
   const hasEnded = new Date(event.date) < new Date();
   const isSoldOut = event.availableSeats === 0;
   const isDisabled = hasEnded || isSoldOut;
@@ -91,7 +91,7 @@ export default function EventCard({ event }: EventCardProps) {
                 }
                 className="mt-1 block w-full rounded-md p-2 border border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 required
-                disabled={isDisabled} // Disable input if the event has ended
+                disabled={isDisabled} 
               />
             </div>
 
@@ -114,7 +114,7 @@ export default function EventCard({ event }: EventCardProps) {
                 }
                 className="mt-1 block w-full rounded-md p-2 border border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 required
-                disabled={isDisabled} // Disable input if the event has ended
+                disabled={isDisabled} 
               />
             </div>
 
@@ -139,7 +139,7 @@ export default function EventCard({ event }: EventCardProps) {
                 }
                 className="mt-1 block w-full rounded-md p-2 border border-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 required
-                disabled={isDisabled} // Disable input if the event has ended
+                disabled={isDisabled} 
               />
             </div>
 

@@ -21,7 +21,7 @@ export function useBookEvent() {
   const bookEvent = async (eventId: string, bookingData: BookingData) => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/events/${eventId}/book`, {
+      const response = await fetch(`/api/events/book?eventId=${eventId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,3 +1,11 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "overrides": [
+  {
+    "files": ["./app/api/events/[id]/book/route.ts"],
+    "rules": {
+      "@typescript-eslint/ban-ts-comment": "off"
+    }
+  }
+]
 }

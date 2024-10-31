@@ -40,7 +40,7 @@ export default function AdminDashboard() {
                onClick={handlerShowBooking}
                className={`px-4 py-2 border border-transparent rounded-md 
                 shadow-sm text-sm font-medium text-black
-                 ${!showBooking === true ? 'bg-gray-100 hover:bg-gray-200' :' text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' }`}>Booking</button>
+                 ${!showBooking === true ? 'bg-gray-100 hover:bg-gray-200' :' text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' }`}>Bookings</button>
              <button 
             onClick={handlershowAddForm}
             className={`px-4 py-2 border border-transparent rounded-md 
@@ -61,7 +61,10 @@ export default function AdminDashboard() {
         </div>
       )}
        { showEvents && (
-         <AdminEventList />
+          <div>
+            <h2 className='text-[28px] text-black font-bold leading-[42px]'>Events List</h2>
+            <AdminEventList />
+          </div>
        )
       
        }

@@ -16,7 +16,7 @@ export default function AdminEventList() {
 
     setDeleteLoading(eventId);
     try {
-      const response = await fetch(`/api/events/${eventId}`, {
+      const response = await fetch(`/api/events/event?id=${eventId}`, {
         method: 'DELETE',
       });
 

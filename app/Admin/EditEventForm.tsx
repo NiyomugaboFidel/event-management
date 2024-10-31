@@ -34,7 +34,7 @@ export default function EditEventForm({ event, onCancel }: EditEventFormProps) {
     setError(null);
 
     try {
-      const response = await fetch(`/api/events/${event._id}`, {
+      const response = await fetch(`/api/events/event?id=${event._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -38,14 +38,14 @@ export async function POST(request: Request) {
     response.cookies.set('auth_token', token, {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 86400, // 1 day
+      maxAge: 86400, 
     });
 
     return response;
   } catch (error) {
-    console.error('Authentication error:', error); // Log the error for debugging
+    console.error('Authentication error:', error); 
     return NextResponse.json(
-      { error: 'Authentication failed', details: error }, // Include error details if necessary
+      { error: 'Authentication failed', details: error }, 
       { status: 500 }
     );
   }

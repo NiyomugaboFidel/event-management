@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import seedAdminUser from "./seedAdmin";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017";
+const MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI as string
+
 
 const connectDB = async () => {
   try {

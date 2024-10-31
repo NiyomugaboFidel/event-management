@@ -14,12 +14,8 @@ type Booking = {
 const BookingsTable = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const itemsPerPage = 5; // Remove `setItemsPerPage`
 
-   const handlerSetItemsPerPage = ()=>{
-    setItemsPerPage(5);
-   }
-   handlerSetItemsPerPage();
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -34,11 +30,7 @@ const BookingsTable = () => {
   }, []);
 
   const getRowColor = (booking: Booking): string => {
-    if (booking.event.title.startsWith('A')) {
-      return 'bg-blue-100';
-    } else {
-      return 'bg-gray-100';
-    }
+    return booking.event.title.startsWith('A') ? 'bg-blue-100' : 'bg-gray-100';
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -79,7 +71,7 @@ const BookingsTable = () => {
             className={`px-4 py-2 mx-1 rounded-full ${currentPage === pageNumber ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
             onClick={() => paginate(pageNumber)}
           >
-            {pageNumber }
+            {pageNumber}
           </button>
         ))}
       </div>

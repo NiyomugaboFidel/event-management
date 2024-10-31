@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Event Management System
+
+## Overview
+
+The **Event Management System** is a web application designed to facilitate event organization and booking. This system allows admins to manage events and users to view and book available seats without needing to log in.
+
+### Features
+
+1. **Admin Capabilities:**
+   - **Authentication:** Admins can log in to manage events securely.
+   - **Event Management:** Admins can create, edit, and delete events. Each event includes:
+     - Title
+     - Description
+     - Date
+     - Total and available seats
+
+2. **User Capabilities:**
+   - **Event Viewing:** Users can browse all upcoming events.
+   - **Booking Seats:** Users can book available seats for events in real-time without needing to authenticate. The seat availability updates dynamically as bookings occur.
+
+## Tech Requirements
+
+- **Frontend:** Built with [Next.js](https://nextjs.org/) utilizing server-side rendering for improved performance and SEO.
+- **Backend:** Implemented using Next.js API routes to handle event and booking data.
+- **Database:**  [MongoDB](https://www.mongodb.com/) Used  to store event and booking information.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (version 18 or higher)
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/NiyomugaboFidel/event-management.git
+   run npm dev
+#### As an admin you log in using below credentials:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Email:fidelniyomugabo67@gmail.com
+Password:admin123
 ```
+### Links
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Video link: 
+- Deployed version link: 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

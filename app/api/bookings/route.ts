@@ -11,7 +11,7 @@ export async function GET() {
     
     return NextResponse.json(bookings);
   } catch (error) {
-    console.error('Error fetching bookings:', error); // Log the error for debugging
+    console.error('Error fetching bookings:', error); 
     return NextResponse.json(
       { error: 'Failed to fetch bookings' },
       { status: 500 }

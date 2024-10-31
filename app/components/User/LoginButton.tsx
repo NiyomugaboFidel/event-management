@@ -3,22 +3,23 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const LoginButton = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check auth token on component mount
+    
     checkAuthToken();
 
-    // Optional: Recheck the token when cookie changes (requires handling external changes)
+ 
     const handleStorageChange = () => {
       checkAuthToken();
     };
     window.addEventListener('storage', handleStorageChange);
 
-    // Clean up the event listener when component unmounts
+  
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
@@ -28,7 +29,7 @@ const LoginButton = () => {
     try {
       const token = Cookies.get('auth_token');
       console.log('Token on mount:', token);
-      setIsLoggedIn(!!token); // Convert token to a boolean
+      setIsLoggedIn(!!token); 
     } catch (error) {
       console.error('Error retrieving auth_token:', error);
       setIsLoggedIn(false);
@@ -46,7 +47,9 @@ const LoginButton = () => {
   };
 
   return (
-    <button
+    <div className='flex items-center justify-center'>
+       <span className= {` ${ isLoggedIn ? 'block': 'hidden'} px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium`}><Link href={'/admin'}>Dashboard</Link></span>
+      <button
       onClick={isLoggedIn ? handleLogout : handleLogin}
       className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium ${
         isLoggedIn
@@ -56,6 +59,7 @@ const LoginButton = () => {
     >
       {isLoggedIn ? 'Logout' : 'Login'}
     </button>
+    </div>
   );
 };
 

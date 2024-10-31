@@ -30,7 +30,7 @@ export default function LoginPage() {
         throw new Error(data.error || 'Login failed');
       }
        toast('✅Login Successful')
-      // router.push('/admin');
+    
       window.location.href = '/admin'
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
