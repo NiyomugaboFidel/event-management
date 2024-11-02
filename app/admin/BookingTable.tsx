@@ -16,6 +16,7 @@ const BookingsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Remove `setItemsPerPage`
 
+
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -29,9 +30,6 @@ const BookingsTable = () => {
     fetchBookings();
   }, []);
 
-  const getRowColor = (booking: Booking): string => {
-    return booking.event.title.startsWith('A') ? 'bg-blue-100' : 'bg-gray-100';
-  };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -46,7 +44,7 @@ const BookingsTable = () => {
       <h2 className="text-xl font-bold mb-4">Bookings</h2>
       <table className="table-auto w-full border-collapse">
         <thead>
-          <tr>
+          <tr className='bg-blue-200'>
             <th className="px-4 py-2 border">Event</th>
             <th className="px-4 py-2 border">Attendee Name</th>
             <th className="px-4 py-2 border">Attendee Email</th>
@@ -55,9 +53,10 @@ const BookingsTable = () => {
         </thead>
         <tbody>
           {currentItems.map((booking) => (
-            <tr key={booking._id} className={getRowColor(booking)}>
-              <td className="border px-4 py-2">{booking.event.title}</td>
-              <td className="border px-4 py-2">{booking.attendeeName}</td>
+           
+            <tr key={booking._id} className={''}>
+              <td className={`${booking.event ? booking.event.title:'bg-red-500 text-white font-medium' } border px-4 py-2`}>{booking.event ? booking.event.title : 'Event removed'}</td>
+              <td className="border px-4 py-2 font-semibold">{booking.attendeeName}</td>
               <td className="border px-4 py-2">{booking.attendeeEmail}</td>
               <td className="border px-4 py-2">{booking.numberOfSeats}</td>
             </tr>
