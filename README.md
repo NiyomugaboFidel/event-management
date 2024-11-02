@@ -46,5 +46,6 @@ Password:admin123
 ### Links
 
 - Video link: 
-- Deployed version link: 
+- Deployed version link: eventmanagement-eosin.vercel.app
+
 
